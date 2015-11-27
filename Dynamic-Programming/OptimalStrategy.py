@@ -18,7 +18,7 @@ class OptimalStrategy:
             return self.BottomUp()
         else:
             return self.TopBottom(0,self.len-1)
-
+    ##this is to show that bottom up does not work in this problem, we have to follow top-bottom
     def BottomUp(self):
         for i in range(0,self.len-1):
             for j in range(i+2, self.len):
