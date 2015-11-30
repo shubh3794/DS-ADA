@@ -1,3 +1,6 @@
+##given n. You have 1...n nodes. Find out how many BST's can be formed with height less than or equal to h. And then sum the root nodes of all those BST's (Was asked in hackerearth, cleared 3/10 test cases).
+
+
 x = map(int,raw_input().split())
 s = x[0]
 d = x[1]
