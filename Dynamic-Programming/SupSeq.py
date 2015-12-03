@@ -24,19 +24,19 @@ def SCS():
     j = n
     k = x-1
     s = [None]*x
-    while i > 0 and j > 0:
+    while i >= 0 and j >= 0:
         if a[i-1]==b[j-1]:
              s[k] = a[i-1]
              k -= 1
              i -= 1
              j -= 1
         else:
-            if T[i-1][j] < T[i][j-1]:
-                s[k] = a[i-1]
-                i -= 1
-            else:
+            if T[i-1][j] > T[i][j-1]:
                 s[k] = b[j-1]
                 j -= 1
+            else:
+                s[k] = a[i-1]
+                i -= 1
             k -= 1
     print s
     print x            

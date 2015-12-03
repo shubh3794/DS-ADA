@@ -11,19 +11,17 @@ def FindCount():
     m = len(s)
     n = len(t)
     L = [[0]*(n+1) for i in range(m+1)]
-    for i in range(n+1):
-        L[0][i] = 1
-    for i in range(m+1):
-        L[i][0] = 0
-    L[0][0] = 1
 
-    for i in range(1,m+1):
-        for j in range(1,n+1):
-            
-            if s[i-1]==t[j-1]:
-                L[i][j] = L[i-1][j-1]+L[i][j-1]
+    for i in range(m+1):
+        for j in range(n+1):
+            if j == 0:
+                L[i][j]=0
+            elif i ==0:
+                L[i][j] = 1
+            elif s[i-1]==t[j-1]:
+                L[i][j] = max(L[i][j],L[i-1][j-1]+L[i][j-1])
             else:
-                L[i][j] = L[i-1][j]
+                L[i][j] = max(L[i][j],L[i-1][j])
     print L            
     return L[m][n]
 
