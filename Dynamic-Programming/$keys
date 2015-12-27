@@ -1,0 +1,37 @@
+##you have a special kinda keyboard having only 4 keys, 'A', 'Ctrl+A' which selects everything, 'Ctrl+C' which copies the selected buffer
+##'Ctrl+V' which pastes the copied buffer. Find the maxm num of 'A's'that can be printed
+##in n inputs
+def MaxA():
+    n = int(raw_input())
+    m = [0]*(n+1)
+    m[0] = 0
+    m[1] = 1
+    m[2] = 2
+    m[3] = 3
+    copybuff = ''
+    selbuff = ''
+    selFlag = False
+    copFlag = False
+    temp = 0
+    a = ['A','CA','CC','CV']
+    for i in range(4,n+1):
+        for j in range(4):
+            if a[j] == 'A':
+                temp = 1
+            elif a[j] == 'CA':
+                selbuff = m[i-1]
+                selFlag = True
+                temp = 0
+            elif a[j] == 'CA' and selFlag:
+                copFlag = True
+                copybuff = selbuff
+                selbuff = ''
+                selFlag = False
+                temp = 0
+            else:
+                temp = copybuff
+            if temp + m[i-1] > m[i]:
+                m[i] = temp + m[i-1]
+    return m[n]
+maxA()
+            
