@@ -33,15 +33,43 @@ class LinkedList:
         temp.next = storeNext
 
     def delete(self):
-        if self.head.next = None:
+        if self.head.next == None:
             self.tail = None
         self.head = self.head.next
         return self.head
 
+    def printLL(self):
+        curr = self.head
+        while curr !=None:
+            print curr
+            curr = curr.next
+
+    ##This does not reverses the linked list, this just prints the reverse list
     def reversePrint(self,x):
         if x == None:
             return
-        reversePrint(self,x.next)
+        self.reversePrint(x.next)
         print x
+        
+
+    ##This actually reverses linked list physically
+    def reverseLLInPlace(self,x,end):
+        if x == None:
+            return
+        if x.next==None:
+            self.head=x
+        temp = x.next
+        x.next = end
+        end = x
+        self.reverseLLInPlace(temp,x)
+
+a = LinkedList()
+for i in range(6):
+    a.insertBeg(i)
+a.reverseLLInPlace(a.head,None)
+a.printLL()
+
+
+        
         
     
