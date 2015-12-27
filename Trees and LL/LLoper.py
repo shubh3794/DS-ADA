@@ -64,10 +64,49 @@ class LinkedList:
         self.reverseLLInPlace(temp,x)
 
 a = LinkedList()
-for i in range(6):
+b = LinkedList()
+for i in range(1,10,2):
     a.insertBeg(i)
+for i in range(3,9,1):
+    b.insertBeg(i)
 a.reverseLLInPlace(a.head,None)
-a.printLL()
+b.reverseLLInPlace(b.head,None)
+result = LinkedList()
+
+##http://www.geeksforgeeks.org/sum-of-two-linked-lists/
+def addtwoLL(a,b,result,carry):
+    if a==None or b==None:
+        if a==None and b != None:
+            sumi=b.value+carry
+            res = sumi%10
+            carry = sumi/10
+            result.insertBeg(res)
+            return addtwoLL(None,b.next,result,carry)
+            
+        if b==None and a != None:
+            sumi=a.value+carry
+            res = sumi%10
+            carry = sumi/10
+            result.insertBeg(res)
+            return addtwoLL(a.next,None,result,carry)
+
+        if a==None and b==None and carry>9:
+            res = carry%10
+            carry = carry/10
+            result.insertBeg(res)
+            addtwoLL(None,None,result,carry)
+        if a==None and b==None and carry<=9:
+            result.insertBeg(carry)
+            return result
+    else:
+        sumi = a.value+b.value+carry
+        res = sumi%10
+        carry = sumi/10
+        result.insertBeg(res)
+        return addtwoLL(a.next,b.next,result,carry)
+    
+x = addtwoLL(a.head,b.head,result,0)    
+x.printLL()
 
 
         
