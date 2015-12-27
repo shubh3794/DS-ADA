@@ -109,6 +109,58 @@ x = addtwoLL(a.head,b.head,result,0)
 x.printLL()
 
 
-        
-        
+sortLL = LinkedList()
+sortLL.insertBeg(5)
+sortLL.insertBeg(9)
+sortLL.insertBeg(6)
+sortLL.insertBeg(8)
+
+def findMid(x):
+    if x==None:
+        return
+    if x.next==None:
+        return x
+    slow = x
+    fast = x
+    while fast.next != None and fast.next.next != None:
+        slow = slow.next
+        fast = fast.next.next
+    return slow
+
+def mergeSortLL(x):
+    if x.next==None:
+        return x
+    mid = findMid(x)
+    temp = mid.next
+    mid.next = None
+    mergeSortLL(x)
+    mergeSortLL(temp)
+    sortLL.head = merge(x,temp)
     
+def merge(x,y):
+    head = None
+    if x==None and y==None:
+        return None
+    
+    if x!= None or y!=None:
+        if y == None:
+            return x
+        else:
+            return y
+    
+    if x.value<=y.value:
+        head = x
+        x = x.next
+    else:
+        head = y
+        y = y.next
+    head.next = merge(x,y)
+    return head
+        
+        
+
+
+s= mergeSortLL(sortLL.head)
+print "\n yayaya \n"
+sortLL.reverseLLInPlace(sortLL.head,None)
+sortLL.printLL()
