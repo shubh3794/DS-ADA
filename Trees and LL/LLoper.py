@@ -63,10 +63,51 @@ class LinkedList:
         end = x
         self.reverseLLInPlace(temp,x)
 
+    ##function reverse LL in pair of k, for example 1-2-3-4-5-6 becomes
+    ##3-2-1-6-5-4
+    def reverseK(self,x,count,k,end):
+        if count>k or x==None:
+            return end
+        if count <=k:
+            temp = x.next
+            x.next = end
+            end = x
+            return self.reverseK(temp,count+1,k,end)
+        
+
+    def revK(self,k):
+        curr = self.head
+        cnt = 0
+        previ = None
+        while curr != None:    
+            temp = curr
+            count = 0
+            
+            while curr!=None and count != k:
+                count += 1
+                curr = curr.next
+            m = self.reverseK(temp,1,k,curr)
+
+            if temp.value == self.head.value:
+                self.head=m
+                previ = m
+            else:
+                previ.next = m
+                previ = m
+            cnt = 0
+            if previ != None:
+                while cnt < k-1 and previ!=None:
+                    previ = previ.next
+                    cnt += 1
+
 a = LinkedList()
 b = LinkedList()
-for i in range(1,10,2):
+for i in range(1,8):
     a.insertBeg(i)
+a.reverseLLInPlace(a.head,None)
+a.revK(3)
+a.printLL()
+print "\nholalala"
 for i in range(3,9,1):
     b.insertBeg(i)
 a.reverseLLInPlace(a.head,None)
@@ -108,7 +149,7 @@ def addtwoLL(a,b,result,carry):
 x = addtwoLL(a.head,b.head,result,0)    
 x.printLL()
 
-
+##LL to test merge sort functions
 sortLL = LinkedList()
 sortLL.insertBeg(5)
 sortLL.insertBeg(9)
