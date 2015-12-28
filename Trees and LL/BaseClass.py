@@ -73,4 +73,22 @@ class BST:
             x.left = self.insert(x.left,value)
         return x
 
+class Queue:
+    def __init__(self):
+        self.front = None
+        self.rear = None
+
+    def enq(self,value):
+        temp = rear
+        rear = Node(value)
+        if temp!=None:
+            temp.next = rear
+        if front ==None:
+            front == rear
+            
+    def deq(self):
+        temp = front.value
+        front = front.next
+        return temp
         
+       
