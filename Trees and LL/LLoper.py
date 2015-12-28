@@ -114,7 +114,7 @@ sortLL.insertBeg(5)
 sortLL.insertBeg(9)
 sortLL.insertBeg(6)
 sortLL.insertBeg(8)
-
+sortLL.insertBeg(5)
 def findMid(x):
     if x==None:
         return
@@ -133,34 +133,37 @@ def mergeSortLL(x):
     mid = findMid(x)
     temp = mid.next
     mid.next = None
-    mergeSortLL(x)
-    mergeSortLL(temp)
-    sortLL.head = merge(x,temp)
+    a = mergeSortLL(x)
+    b = mergeSortLL(temp)
+    return merge(a,b)
     
-def merge(x,y):
-    head = None
-    if x==None and y==None:
-        return None
-    
-    if x!= None or y!=None:
-        if y == None:
-            return x
+def merge(head,mid):
+    if head == None:
+        return mid
+    if mid == None:
+        return head
+    curr = Node()
+    temp = curr
+    while head!=None and mid!= None:
+        if head.value<=mid.value:
+            temp.next = head
+            head = head.next
         else:
-            return y
-    
-    if x.value<=y.value:
-        head = x
-        x = x.next
+            temp.next=mid
+            mid=mid.next
+
+        temp= temp.next
+    if head==None and mid != None:
+        temp.next = mid
     else:
-        head = y
-        y = y.next
-    head.next = merge(x,y)
-    return head
-        
+        temp.next = head
+    return curr.next    
         
 
 
 s= mergeSortLL(sortLL.head)
+print s.next
 print "\n yayaya \n"
-sortLL.reverseLLInPlace(sortLL.head,None)
-sortLL.printLL()
+while s != None:
+    print s
+    s = s.next
