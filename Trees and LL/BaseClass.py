@@ -26,6 +26,11 @@ class Node:
 class BTree:
     def __init__(self):
         self.root = None
+
+    def insertL(self,x,value):
+        self.root = self.insertLeft(self.root,value)
+    def insertR(self,x,value):
+        self.root = self.insertRight(self.root,value)
     def insertLeft(self,x,value):
         if x==None:
             x = Node(value)
@@ -34,10 +39,10 @@ class BTree:
         elif x.right==None:
             x.right = self.insertLeft(x.right,value)
         else:
-            x.left = self.insert(x.left,value)
+            x.left = self.insertLeft(x.left,value)
         return x
     
-    def insertRight(self,value):
+    def insertRight(self,x,value):
         if x==None:
             x = Node(value)
         elif x.right==None:
@@ -45,7 +50,7 @@ class BTree:
         elif x.left==None:
             x.left = self.insertRight(x.left,value)
         else:
-            x.right = self.insert(x.right,value)
+            x.right = self.insertRight(x.right,value)
         return x
     def __str__(self):
         return "Root is %s" %(self.root.value)
@@ -55,8 +60,14 @@ class BTree:
 class BST:
     def __init__(self):
         self.root = None
+
+    def ins(self,x,value):
+        self.root = self.insert(self.root,value)
+        
     def insert(self,x,value):
-        if x.value <= value:
+        if x==None:
+            x = Node(value)
+        elif x.value <= value:
             x.right = self.insert(x.right,value)
         else:
             x.left = self.insert(x.left,value)
