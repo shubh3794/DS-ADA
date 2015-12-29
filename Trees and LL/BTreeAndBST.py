@@ -19,7 +19,23 @@ def inorder(x):
     print x
     if x.right != None:
         inorder(x.right)
+def preorder(x):
+    if x==None:
+        return
+    print x
+    if x.left !=None:
+        preorder(x.left)
+    elif x.right!=None:
+        preorder(x.right)
 
+def postorder(x):
+    if x==None:
+        return
+    if x.left !=None:
+        preorder(x.left)
+    elif x.right!=None:
+        preorder(x.right)
+    print x
 
 print "\n btree inorder"
 inorder(bTree.root)
