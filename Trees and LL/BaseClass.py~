@@ -37,7 +37,7 @@ class BTree:
         elif x.left==None:
             x.left = self.insertLeft(x.left,value)
         elif x.right==None:
-            x.right = self.insertLeft(x.right,value)
+            x.right = self.insertRight(x.right,value)
         else:
             x.left = self.insertLeft(x.left,value)
         return x
@@ -48,7 +48,7 @@ class BTree:
         elif x.right==None:
             x.right = self.insertRight(x.right,value)
         elif x.left==None:
-            x.left = self.insertRight(x.left,value)
+            x.left = self.insertLeft(x.left,value)
         else:
             x.right = self.insertRight(x.right,value)
         return x
@@ -74,4 +74,21 @@ class BST:
         return x
 
 class Queue:
+    def __init__(self):
+        self.front = None
+        self.rear = None
+
+    def enq(self,value):
+        temp = rear
+        rear = Node(value)
+        if temp!=None:
+            temp.next = rear
+        if front ==None:
+            front == rear
+            
+    def deq(self):
+        temp = front.value
+        front = front.next
+        return temp
+        
        

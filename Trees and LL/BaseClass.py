@@ -37,7 +37,7 @@ class BTree:
         elif x.left==None:
             x.left = self.insertLeft(x.left,value)
         elif x.right==None:
-            x.right = self.insertLeft(x.right,value)
+            x.right = self.insertRight(x.right,value)
         else:
             x.left = self.insertLeft(x.left,value)
         return x
@@ -48,7 +48,7 @@ class BTree:
         elif x.right==None:
             x.right = self.insertRight(x.right,value)
         elif x.left==None:
-            x.left = self.insertRight(x.left,value)
+            x.left = self.insertLeft(x.left,value)
         else:
             x.right = self.insertRight(x.right,value)
         return x
