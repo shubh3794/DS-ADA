@@ -79,16 +79,27 @@ class Queue:
         self.rear = None
 
     def enq(self,value):
-        temp = rear
-        rear = Node(value)
-        if temp!=None:
-            temp.next = rear
-        if front ==None:
-            front == rear
+        node = Node(value)
+        if self.rear!=None:
+            self.rear.next = node
+        self.rear = node
+        if self.front ==None:
+            self.front = self.rear
             
     def deq(self):
-        temp = front.value
-        front = front.next
+        if self.isEmpty():
+            return
+        temp = self.front.value
+        self.front = self.front.next
+        if self.front == None:
+            self.rear=None
+        print temp    
         return temp
+
+    def isEmpty(self):
+        if self.front==None:
+            return True
+        else:
+            return False
         
        
