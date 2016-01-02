@@ -17,6 +17,8 @@ tree.ins(tree.root,9)
 tree.ins(tree.root,11)
 inorder(tree.root)
 print "\n"
+
+##N^2 complexity
 def BSTDLL(x,flag):
     if x==None:
         return
@@ -49,7 +51,30 @@ def BSTDLL(x,flag):
         return l
 m = BSTDLL(tree.root,'l')
 
-curr = m
+
+##N complexity
+class NP:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        
+def BSDLL(x,result):
+    if x==None:
+        return
+    BSDLL(x.left,result)
+    x.left = result.tail
+    if result.head != None:
+        result.tail.right = x
+    else:
+        result.head = x
+    r = x.right
+    x.right = None
+    result.tail = x
+    BSDLL(r,result)
+    
+result = NP()
+BSDLL(tree.root,result)
+curr = result.head
 while curr!=None:
     print curr.value
-    curr = curr.next
+    curr = curr.right
